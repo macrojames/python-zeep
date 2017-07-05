@@ -31,7 +31,7 @@ def process_multiref(node):
                 new = _dereference_element(obj, node)
 
                 # Replace the node with the new dereferenced node
-                parent.insert(parent.index(node), new)
+                parent.insert(parent.index(node), copy.deepcopy(new))
                 parent.remove(node)
                 node = new
 
