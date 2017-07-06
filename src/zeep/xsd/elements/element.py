@@ -17,6 +17,7 @@ __all__ = ['Element']
 
 
 class Element(Base):
+
     def __init__(self, name, type_=None, min_occurs=1, max_occurs=1,
                  nillable=False, default=None, is_global=False, attr_name=None):
 
@@ -160,7 +161,7 @@ class Element(Base):
                     xmlelement, schema, allow_none=True, context=context)
                 result.append(item)
             elif filter(lambda(elem): etree.QName(elem.tag) == self.qname.localname, xmlelements):
-                # Search for the field in remaining elements, not only the leftmost
+                # Search for the field in remaining elements, not only the leftmost, workaroung for Axis inheritance #487
                 xmlelement = filter(lambda(elem): etree.QName(elem.tag) == self.qname.localname, xmlelements)[0]
                 xmlelements.remove(xmlelement)
                 num_matches += 1
